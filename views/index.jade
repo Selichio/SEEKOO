@@ -1,0 +1,132 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='icon', href='imgages/favicon.ico')
+    title= title
+    // Bootstrap core CSS
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+
+    // Custom styles for this template
+    link(href='css/carousel.css', rel='stylesheet')
+
+body
+    .navbar-wrapper
+      .container
+        .navbar.navbar-inverse.navbar-static-top(role='navigation')
+          .container
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='#') SEKO Schadenserfassung
+            .navbar-collapse.collapse
+              ul.nav.navbar-nav
+                li.active
+                    a(href='/') Startseite
+                li
+                    a(href='/Partner') Partner
+                li
+                    a(href='/kontakt') Kontakt
+                li.dropdown
+                  a.dropdown-toggle(href='/login', data-toggle='dropdown')
+                    fa.fa-sign-in Login
+                  ul.dropdown-menu(style='padding: 15px;min-width: 250px;')
+                    li
+                      .row
+                        .col-md-12
+                          form#login-nav.form(role='form', method='post', action='/kunde/login', accept-charset='UTF-8')
+                            .form-group
+                              label.sr-only(for='benutzername') Benutzername
+                              |                                                 
+                              input#benutzername.form-control(type='text', name='benutzername', placeholder='Benutzername', required='')
+                            |                                             
+                            .form-group
+                              label.sr-only(for='passwort') Passwort
+                              |                                                 
+                              input#passwort.form-control(type='password', name='passwort', placeholder='Passwort', required='')
+                            |                                             
+                            .form-group
+                              button.btn.btn-success.btn-block(type='submit') Anmelden
+                          form#login-nav.form(role='form', method='post', action='/mitarbeiter/login', accept-charset='UTF-8')
+                            .form-group
+                              label.sr-only(for='benutzername') Benutzername
+                              |                                                 
+                              input#benutzername.form-control(type='text', name='benutzername', placeholder='Benutzername', required='')
+                            |                                             
+                            .form-group
+                              label.sr-only(for='passwort') Passwort
+                              |                                                 
+                              input#passwort.form-control(type='password', name='passwort', placeholder='Passwort', required='')
+                            |                                             
+                            .form-group
+                              button.btn.btn-success.btn-block(type='submit') Anmelden
+     
+    // Carousel
+    // ==================================================
+    #myCarousel.carousel.slide(data-ride='carousel')
+      // Indicators
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        li(data-target='#myCarousel', data-slide-to='1')
+        li(data-target='#myCarousel', data-slide-to='2')
+      .carousel-inner
+        .item.active
+          img(src='images/banner.jpg', alt='First slide')
+          .container
+            .carousel-caption
+              h1 SEKO Schadenserfassung
+              p
+                | Wir arbeiten eng mit unseren Partnern zusammen um Ihnen optimalen
+                | Support für die Erfassung von Unfällen und Schaden zu bieten.
+              p
+                a.btn.btn-lg.btn-primary(href='/ueberuns', role='button') Über uns
+        .item
+          img(src='images/banner.jpg', alt='Second slide')
+          .container
+            .carousel-caption
+              h1 Große Anzahl an Partnern
+              p
+                | Europecar, Sixt und viele weitere Kooperationspartner
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Unsere Partner
+        .item
+          img(src='images/banner.jpg', alt='Third slide')
+          .container
+            .carousel-caption
+              h1 Direkt mobile Vororterfassung von Vorfällen
+              p
+                | Erfassen Sie direkt vor Ort einen Schaden und leiten Sie diesen
+                | mit Bildern und Informationen direkt an DEKRA oder weitere Gutachter
+                | weiter.
+              p
+                a.btn.btn-lg.btn-primary(href='/kontakt', role='button') Kontakt
+      a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+        span.glyphicon.glyphicon-chevron-left
+      a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+        span.glyphicon.glyphicon-chevron-right
+    // /.carousel
+    .container.marketing
+      // Three columns of text below the carousel
+      .row
+        .col-lg-4
+          img.img-circle(src='images/dekra.png', alt='Generic placeholder image', style='width: 240px; height: 140px;')
+        .col-lg-4
+          img.img-circle(src='images/sixt.png', alt='Generic placeholder image', style='width: 200px; height: 140px;')
+        .col-lg-4
+          img.img-circle(src='images/europecar.png', alt='Generic placeholder image', style='width: 240px; height: 140px;')
+
+    
+    // Bootstrap core JavaScript
+    // ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/holder.js')
+block content
