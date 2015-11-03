@@ -7,4 +7,48 @@ block headerdesc
   p Hier wird ein neuer Schaden erfasst
 
 block content
-  p Hier kommt die Form für den neuen Schaden
+  form.form-horizontal(role='form', name='erfassen' method='post', action='/kunde/erfassen')
+      fieldset
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='Fahrzeug') Fahrzeug
+          .col-md-4
+            input#Fahrzeug.form-control.input-md(name='Fahrzeug', type='text', placeholder='Audi A3', required='')
+        // Textarea
+        .form-group
+          label.col-sm-2.control-label(for='unfallhergang') Unfallhergang
+          .col-sm-4
+            textarea#unfallhergang.form-control(name='unfallhergang') Beschreiben Sie den Unfallhergang.
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='ort') Unfallort
+          .col-md-4
+            input#ort.form-control.input-md(name='ort', type='text', placeholder='Stuttgart', required='')
+        // Datepicker
+        .form-group
+          label.col-sm-2.control-label(for='datum') Datum
+          .col-md-4
+            input#datum.form-control(type='date', name='datum', placeholder='TT.MM.YYYY')
+        // Select Basic
+        .form-group
+          label.col-sm-2.control-label(for='Verursacher') Verursacher
+          .col-md-4
+            select#Verursacher.form-control(name='Verursacher')
+              option(value='1') Fremdverschulden
+              option(value='2') Eigenverschulden
+              option(value='3') Teilschuld
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='halter') Halter
+          .col-md-4
+            input#halter.form-control.input-md(name='halter', type='text', placeholder='Max Mustermann', required='')
+        // File Button
+        .form-group
+          label.col-sm-2.control-label(for='fileupload') Upload
+          .col-md-4
+            input#fileupload.input-file(name='fileupload', type='file')
+        // Button
+        .form-group
+          label.col-sm-2.control-label(for='erfassen')
+          .col-md-4
+            button#erfassen.btn.btn-primary(name='erfassen') Schaden erfassen
