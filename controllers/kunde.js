@@ -3,6 +3,8 @@ var express = require('express')
   , Kunde = require('../models/kunde')
   , Auth = require('../middlewares/auth')
 
+  
+
 // Routen für http://localhost:3000/1users/*
 
 
@@ -46,8 +48,40 @@ router.get('/intern', Auth, function(req, res){
 
 // RENDER ERFASSUNG
 router.get('/erfassen', Auth, function(req, res){
-	res.render('erfassung')
+	res.render('erfassen')
 })
 
+router.post('/erfassen', function(req, res){
+	//Erfassung des Schadens
+	console.log("Kunde.erfassen")
+	
+	var schaden = {
+	"marke" : req.body.marke,
+	"model"      : req.body.model,
+	"datum"      : req.body.datum,
+	"uhrzeit"      : req.body.uhrzeit,
+	"unfallhergang"      : req.body.unfallhergang,
+	"unfallort"      : req.body.unfallort,
+	"halter"      : req.body.halter,
+	"verursacher"      : req.body.verursacher,
+	"sonstiges"  : req.body.username,
+	"status"   : "opened",
+	"rechnung" : "",
+	"kostenvoranschlag" : "",
+	"fahrzeugbewertung" : "",
+	"bilder" : req.files,
+	"Melder"    : req.session.user
+	}
+	Kunde.addSchaden(schaden, function(err){
+		if(err)
+		{
+			res.render("Fehler beim erfassen")
+		}
+		else
+		{
+			res.render("controllcenter", schaden)
+		}
+	})
+})
 
 module.exports = router

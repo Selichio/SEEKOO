@@ -7,6 +7,7 @@ block headerdesc
   p Hier wird ein neuer Schaden erfasst
 
 block content
+<<<<<<< HEAD
   form.form-horizontal(role='form', name='erfassen' method='post', action='/kunde/erfassen')
       fieldset
         // Text input
@@ -52,3 +53,16 @@ block content
           label.col-sm-2.control-label(for='erfassen')
           .col-md-4
             button#erfassen.btn.btn-primary(name='erfassen') Schaden erfassen
+=======
+  p Hier kommt die Form für den neuen Schaden
+  form(method='post', enctype='multipart/form-data', action='/kunde/erfassen')
+    input(type='text', name='username')
+    |     
+    input(type='text', name='password')
+    |     
+    input(type='file',multiple, name='bilder')
+    |     
+    input(type='submit')
+
+
+>>>>>>> master
