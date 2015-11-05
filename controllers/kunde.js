@@ -64,7 +64,7 @@ router.post('/erfassen', function(req, res){
 	"unfallort"      : req.body.unfallort,
 	"halter"      : req.body.halter,
 	"verursacher"      : req.body.verursacher,
-	"sonstiges"  : req.body.username,
+	"sonstiges"  : req.body.sonstiges,
 	"status"   : "opened",
 	"rechnung" : "",
 	"kostenvoranschlag" : "",
@@ -75,11 +75,11 @@ router.post('/erfassen', function(req, res){
 	Kunde.addSchaden(schaden, function(err){
 		if(err)
 		{
-			res.render("Fehler beim erfassen")
+			res.render("error")
 		}
 		else
 		{
-			res.render("controllcenter", schaden)
+			res.render("controlcenter", schaden)
 		}
 	})
 })
