@@ -19,12 +19,12 @@ html(lang='en')
       {
         if(document.loginform.operation[0].checked == true)
       {
-      document.loginform.action ="/login";
+      document.loginform.action ="/kunde/login";
       }
       else
         if(document.loginform.operation[1].checked == true)
       {
-        document.loginform.action ="/admin";
+        document.loginform.action ="/mitarbeiter/login";
       }
         return true;
       }

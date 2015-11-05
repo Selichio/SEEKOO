@@ -22,7 +22,8 @@
     "express-session": "*",
     "jade": "^1.9.2",
     "monk": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "multer": "*"
   },
   "devDependencies": {
     "mocha": "^2.2.4",

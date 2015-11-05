@@ -24,8 +24,17 @@ exports.getSchaden = function(userid, cb) {
 	console.log("Model Kunde: getSchaden")
 	var err = null
 	var collUser = db.get("Schaden")
-	collUser.find({}, function(err, schaden){
-		cb(err, "Hallo")
+	collUser.find({ "Melder" : { "kennung" : "lb85783"}}, function(err, schaden){
+		cb(err, schaden)
 
 	})
+};
+
+exports.addSchaden = function(schaden, cb) {
+	console.log("Model Kunde: addSchaden")
+	var err = null
+	var collSchaden = db.get("Schaden")
+	collSchaden.insert(schaden, function(err){
+		cb(err)
+	})	
 };
