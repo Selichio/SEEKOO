@@ -14,6 +14,20 @@ html(lang='en')
     // Custom styles for this template
     link(href='css/carousel.css', rel='stylesheet')
 
+    script(type='text/javascript').
+      function OnSubmitForm()
+      {
+        if(document.loginform.operation[0].checked == true)
+      {
+      document.loginform.action ="/kunde/login";
+      }
+      else
+        if(document.loginform.operation[1].checked == true)
+      {
+        document.loginform.action ="/mitarbeiter/login";
+      }
+        return true;
+      }
 body
     .navbar-wrapper
       .container
@@ -35,13 +49,21 @@ body
                 li
                     a(href='/kontakt') Kontakt
                 li.dropdown
-                  a.dropdown-toggle(href='/login', data-toggle='dropdown')
+                  a.dropdown-toggle(href='#', data-toggle='dropdown')
                     fa.fa-sign-in Login
                   ul.dropdown-menu(style='padding: 15px;min-width: 250px;')
                     li
                       .row
-                        .col-md-12
-                          form#login-nav.form(role='form', method='post', action='/kunde/login', accept-charset='UTF-8')
+                        .col-md-12                         
+                          form#login-nav.form(role='form', name='loginform' method='post', onsubmit="return OnSubmitForm();")
+                            .radio
+                              label
+                                input(type='radio', name='operation', value='0' checked)
+                                | Kunde
+                            .radio
+                              label
+                                input(type='radio', name='operation', value='1')
+                                | Mitarbeiter
                             .form-group
                               label.sr-only(for='benutzername') Benutzername
                               |                                                 
@@ -54,19 +76,8 @@ body
                             |                                             
                             .form-group
                               button.btn.btn-success.btn-block(type='submit') Anmelden
-                          form#login-nav.form(role='form', method='post', action='/mitarbeiter/login', accept-charset='UTF-8')
-                            .form-group
-                              label.sr-only(for='benutzername') Benutzername
-                              |                                                 
-                              input#benutzername.form-control(type='text', name='benutzername', placeholder='Benutzername', required='')
-                            |                                             
-                            .form-group
-                              label.sr-only(for='passwort') Passwort
-                              |                                                 
-                              input#passwort.form-control(type='password', name='passwort', placeholder='Passwort', required='')
-                            |                                             
-                            .form-group
-                              button.btn.btn-success.btn-block(type='submit') Anmelden
+
+     
      
     // Carousel
     // ==================================================
@@ -86,7 +97,7 @@ body
                 | Wir arbeiten eng mit unseren Partnern zusammen um Ihnen optimalen
                 | Support für die Erfassung von Unfällen und Schaden zu bieten.
               p
-                a.btn.btn-lg.btn-primary(href='/ueberuns', role='button') Über uns
+                a.btn.btn-lg.btn-primary(href='/signin', role='button') Login
         .item
           img(src='images/banner.jpg', alt='Second slide')
           .container
@@ -129,4 +140,3 @@ body
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
     script(src='js/bootstrap.min.js')
     script(src='js/holder.js')
-block content
