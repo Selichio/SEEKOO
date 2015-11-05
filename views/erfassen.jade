@@ -8,3 +8,13 @@ block headerdesc
 
 block content
   p Hier kommt die Form für den neuen Schaden
+  form(method='post', enctype='multipart/form-data', action='/kunde/erfassen')
+    input(type='text', name='username')
+    |     
+    input(type='text', name='password')
+    |     
+    input(type='file',multiple, name='bilder')
+    |     
+    input(type='submit')
+
+
