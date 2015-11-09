@@ -1,30 +1,38 @@
 // Export some model methods
 var mongo = require('mongodb')
 , monk = require('monk')
+, pwhash = require('password-hash')
 , db = monk('localhost:27017/schadenserfassung')
   
 exports.processLogin = function(user, pass, cb) {
 	console.log("Model Kunde: processLogin")
 	var err = null
-	var returnuser
-	if( user == "Dennis" && pass == "geheim")
-	{
-	  cb(err, {vorname: user, rolle : "kunde"});
+	var returnuser = null
+	var collUser = db.get("User")
+	console.log("User:" + user + " PW: " + pass)
 
-	}
-	else
-	{
-		err = "User Informationen stimmen nicht überein"
-		cb(err, null);
+	collUser.findOne({"kennung" : user}, function(err, userDB){
+		if(pwhash.verify(pass, userDB.password))
+		{
+			console.log("TRUE")
+			cb(err, userDB)
+		}
+		else
+		{
+			err = "Falsches Password"
+			console.log(err)
+			cb(err, null)
+		}
 
-	}
+	})
 };
 
 exports.getSchaden = function(userid, cb) {
 	console.log("Model Kunde: getSchaden")
+	console.log("Userid: " + userid)
 	var err = null
 	var collUser = db.get("Schaden")
-	collUser.find({ "Melder" : { "kennung" : "lb85783"}}, function(err, schaden){
+	collUser.find({ "Melder.kennung" : userid}, function(err, schaden){
 		cb(err, schaden)
 
 	})
