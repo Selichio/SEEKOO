@@ -67,6 +67,10 @@ router.get('/cc', function(req, res) {
   res.render('controlcenter')
 })
 
+router.get('/erfassen', function(req, res) {
+  res.render('erfassen')
+})
+
 
 
 module.exports = router
