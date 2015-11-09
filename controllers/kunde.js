@@ -37,7 +37,8 @@ router.get('/intern', Auth, function(req, res){
 	Kunde.getSchaden("lb85783", function(err, schaden){
 		if(schaden)
 		{
-			res.send(schaden)
+			console.log(schaden)
+			res.render("uebersicht", {schaden:schaden})
 		}
 		else
 		{
@@ -79,7 +80,7 @@ router.post('/erfassen', function(req, res){
 		}
 		else
 		{
-			res.render("controlcenter", schaden)
+			res.render("uebersicht", {schaden:schaden})
 		}
 	})
 })
