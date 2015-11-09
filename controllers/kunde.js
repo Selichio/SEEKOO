@@ -18,12 +18,12 @@ router.post('/login', function(req, res) {
 	Kunde.processLogin(req.body.benutzername, req.body.passwort,function(err, user) {
 		if(err)
 		{
-			res.send("FEHLER: " + err)
+			res.render("error")
 		}
 		else
 		{
 			req.session.user = user
-			//res.send("Hallo " + user.vorname + " deine Rolle: " + user.rolle)
+			console.log(user)
 			res.redirect('/kunde/intern')
 		}
 	})
@@ -34,15 +34,20 @@ router.post('/login', function(req, res) {
 router.get('/intern', Auth, function(req, res){
 
 	// Ermittelt, ob der Kunde bereits einen Schaden gemeldet hat
-	Kunde.getSchaden("lb85783", function(err, schaden){
-		if(schaden)
+	Kunde.getSchaden(req.session.user.kennung, function(err, schaden){
+		console.log("Schaden-Lenght: " +schaden.length)
+		if(schaden.length > 0)
 		{
+<<<<<<< HEAD
 			console.log(schaden)
 			res.render("uebersicht", {schaden:schaden})
+=======
+			res.render("uebersicht", {schadenArray : schaden})
+>>>>>>> master
 		}
 		else
 		{
-			res.send("INDEX SEITE")
+			res.render("erfassen")
 		}
 	})
 })
@@ -80,7 +85,12 @@ router.post('/erfassen', function(req, res){
 		}
 		else
 		{
+<<<<<<< HEAD
 			res.render("uebersicht", {schaden:schaden})
+=======
+			console.log(schaden)
+			res.redirect('/kunde/intern')
+>>>>>>> master
 		}
 	})
 })

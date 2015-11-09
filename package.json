@@ -23,7 +23,8 @@
     "jade": "^1.9.2",
     "monk": "*",
     "mongodb": "*",
-    "multer": "*"
+    "multer": "*",
+    "password-hash": "*"
   },
   "devDependencies": {
     "mocha": "^2.2.4",
