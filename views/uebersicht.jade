@@ -1,0 +1,31 @@
+extends ./layout.jade
+
+block header
+	| Übersicht
+
+block headerdesc
+	p Übersicht der Vorfälle
+
+block content
+	- var schaden = { "Marke"  : "Audi",  "Model"  : "A3", "Status" : "Opened" }
+	
+	table#uebersicht.table.table-striped.table-bordered(cellspacing='0', width='100%')
+		thead
+			tr
+				th Marke + Modell
+				th Datum / Uhrzeit
+				th Unfallort
+				th Verursacher
+				th Status
+		tbody
+
+			tr
+				td #{schaden.Marke} #{schaden.Model}
+				td 09.11.2015 16:04
+				td Stuttgart
+				td Fremdverschulden
+				td 
+					if schaden.Status == "Opened"
+						i.fa.fa-circle.text-success  #{schaden.Status}
+					else 
+						i.fa.fa-circle.text-warning  #{schaden.Status}

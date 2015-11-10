@@ -7,14 +7,63 @@ block headerdesc
   p Hier wird ein neuer Schaden erfasst
 
 block content
-  p Hier kommt die Form für den neuen Schaden
-  form(method='post', enctype='multipart/form-data', action='/kunde/erfassen')
-    input(type='text', name='username')
-    |     
-    input(type='text', name='password')
-    |     
-    input(type='file',multiple, name='bilder')
-    |     
-    input(type='submit')
-
-
+  form.form-horizontal(role='form', name='erfassen' method='post', action='/kunde/erfassen', enctype='multipart/form-data')
+      fieldset
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='marke') Marke
+          .col-md-4
+            input#marke.form-control.input-md(name='marke', type='text', placeholder='Audi', required='')
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='model') Model
+          .col-md-4
+            input#model.form-control.input-md(name='model', type='text', placeholder='A3', required='')
+        // Textarea
+        .form-group
+          label.col-sm-2.control-label(for='unfallhergang') Unfallhergang
+          .col-sm-4
+            textarea#unfallhergang.form-control(name='unfallhergang') Beschreiben Sie den Unfallhergang.
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='unfallort') Unfallort
+          .col-md-4
+            input#unfallort.form-control.input-md(name='unfallort', type='text', placeholder='Stuttgart', required='')
+        // Datepicker
+        .form-group
+          label.col-sm-2.control-label(for='uhrzeit') Uhrzeit
+          .col-md-4
+            input#uhrzeit.form-control(type='text', name='uhrzeit', placeholder='15:04')
+        // Datepicker
+        .form-group
+          label.col-sm-2.control-label(for='datum') Datum
+          .col-md-4
+            input#datum.form-control(type='date', name='datum', placeholder='DD.MM.YYYY')
+        // Select Basic
+        .form-group
+          label.col-sm-2.control-label(for='verursacher') Verursacher
+          .col-md-4
+            select#verursacher.form-control(name='verursacher')
+              option(value='1') Fremdverschulden
+              option(value='2') Eigenverschulden
+              option(value='3') Teilschuld
+        // Text input
+        .form-group
+          label.col-sm-2.control-label(for='halter') Halter
+          .col-md-4
+            input#halter.form-control.input-md(name='halter', type='text', placeholder='Max Mustermann', required='')
+        // Textarea
+        .form-group
+          label.col-sm-2.control-label(for='sonstiges') Sonstiges
+          .col-sm-4
+            textarea#sonstiges.form-control(name='sonstiges') Sonstiges.
+        // File Button
+        .form-group
+          label.col-sm-2.control-label(for='bilder') Upload
+          .col-md-4
+            input#bilder.input-file(name='bilder', type='file', multiple)
+        // Button
+        .form-group
+          label.col-sm-2.control-label(for='erfassen')
+          .col-md-4
+            button#erfassen.btn.btn-primary(name='erfassen') Schaden erfassen

@@ -6,17 +6,19 @@ html
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title AdminLTE 2 | Starter
+    title= title
     // Tell the browser to be responsive to screen width
     meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
     // Bootstrap 3.3.5
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
     // Font Awesome
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
     // Ionicons
     link(rel='stylesheet', href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
     // Theme style
     link(rel='stylesheet', href='/css/AdminLTE.css')
+    // DataTables
+    link(rel='stylesheet', href='/css/dataTables.bootstrap.min.css')
     //
       AdminLTE Skins. We have chosen the skin-blue for this starter
       page. However, you can choose any other skin. Make sure you
@@ -29,6 +31,7 @@ html
       script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
       
     script(type='text/javascript', src='/js/clock.js')
+    script(type='text/javascript', src='/js/datepicker.js')
   //
     BODY TAG OPTIONS:
     =================
@@ -267,9 +270,14 @@ html
     script(src='/js/bootstrap.min.js')
     // AdminLTE App
     script(src='/js/app.min.js')
-    //
-      Optionally, you can add Slimscroll and FastClick plugins.
-      Both of these plugins are recommended to enhance the
-      user experience. Slimscroll is required when using the
-      fixed layout.
+    // DataTables
+    script(src='/js/jquery.dataTables.min.js')
+    script(src='/js/dataTables.bootstrap.min.js')
+    // jQuery for DataTable
+    script.
+      $(document).ready(function() 
+      {
+        $('#uebersicht').DataTable();
+      } 
+      );
 
