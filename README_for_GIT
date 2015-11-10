@@ -1,0 +1,11 @@
+
+0. git pull
+1. Änderungen machen
+2. git status zum checken
+3. "git add -A" für alle oder 'git add "filename"' für einzelne files
+4. "git status" zum checken
+5. "git commit -m 'Message'" > damit commit ich es in mein lokales Repository
+6. "git status" zum nachschauen
+6.1 "git pull"
+7. "git push" ums in die Cloud zu publishen
+
