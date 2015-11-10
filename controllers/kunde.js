@@ -45,7 +45,7 @@ router.get('/intern', Auth, Local, function(req, res){
 })
 
 // RENDER ERFASSUNG
-router.get('/erfassen', Auth, Local function(req, res){
+router.get('/erfassen', Auth, Local, function(req, res){
 	res.render('erfassen')
 })
 
