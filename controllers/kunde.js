@@ -18,12 +18,11 @@ router.post('/login', function(req, res) {
 	Kunde.processLogin(req.body.benutzername, req.body.passwort,function(err, user) {
 		if(err)
 		{
-			res.render("error")
+			res.render("error", {message : err})
 		}
 		else
 		{
 			req.session.user = user
-			console.log(user)
 			res.redirect('/kunde/intern')
 		}
 	})

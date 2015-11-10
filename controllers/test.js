@@ -3,10 +3,23 @@
   , Mitarbeiter = require('../models/mitarbeiter')
   , Auth = require('../middlewares/auth')
 , mongo = require('mongodb')
+, pwgen = require('password-hash')
 , monk = require('monk')
 , db = monk('localhost:27017/schadenserfassung')
 
 // Routen für http://localhost:3000/mitarbeiter/*
+
+
+
+
+// GENERATE PASSWORD HASH
+router.get("/pwgen/:password", function(req, res){
+	var pwhash = pwgen.generate(req.params.password)
+res.send("Password for \"" + req.params.password + "\": " + pwhash)
+})
+
+
+
 
 router.get('/insert', function(req, res) {
 var db = req.db
