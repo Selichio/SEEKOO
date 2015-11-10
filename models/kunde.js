@@ -31,8 +31,8 @@ exports.getSchaden = function(userid, cb) {
 	console.log("Model Kunde: getSchaden")
 	console.log("Userid: " + userid)
 	var err = null
-	var collUser = db.get("Schaden")
-	collUser.find({ "Melder.kennung" : userid}, function(err, schaden){
+	var collSchaden = db.get("Schaden")
+	collSchaden.find({ "Melder.kennung" : userid}, function(err, schaden){
 		cb(err, schaden)
 
 	})
