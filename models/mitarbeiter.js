@@ -1,6 +1,5 @@
 // Export some model methods
 var mongo = require('mongodb')
-, ObjectId=require('mongodb').ObjectID
 , monk = require('monk')
 , pwhash = require('password-hash')
 , db = monk('localhost:27017/schadenserfassung')
@@ -41,11 +40,16 @@ exports.getAlleSchaeden = function(cb){
 exports.getSchadenById = function(schadenid, cb){
 	console.log("Model Mitarbeiter: getSchadenById")
 	var err = null
-	var obid = ObjectId(schadenid)
-	console.log("OBID!!!!!!!!! : "+ obid)
+	var returnschaden = null
 	var collSchaden = db.get("Schaden")
-	collSchaden.findOne({_id : ObjectId(schadenid)}, function(err, schaden){
-		cb(err,schaden)
+	collSchaden.find({}, function(err, schaden){
+		for (var i = schaden.length - 1; i >= 0; i--) {
+			if(schaden[i]._id == schadenid)
+			{
+				returnschaden = schaden[i]
+			}
+		};
+		cb(err,returnschaden)
 	})
 };
 

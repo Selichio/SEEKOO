@@ -50,8 +50,7 @@ router.get('/intern', Auth, function(req, res){
 // RENDER SCHADENDETAIL
 router.get('/schaden/:schadenid', function(req,res){
 	Mitarbeiter.getSchadenById(req.params.schadenid, function(err, schaden){
-		console.log("Schaden (1=true): " + schaden.length)
-		if(schaden.length > 0)
+		if(schaden)
 		{
 			res.send(schaden)
 		}
