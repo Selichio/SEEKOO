@@ -32,6 +32,9 @@ html
       
     script(type='text/javascript', src='/js/clock.js')
     script(type='text/javascript', src='/js/datepicker.js')
+
+
+
   //
     BODY TAG OPTIONS:
     =================
@@ -127,13 +130,17 @@ html
                   // The user image in the navbar
                   img.user-image(src='/images/user2-160x160.jpg', alt='User Image')
                   // hidden-xs hides the username on small devices so only the image appears.
-                  span.hidden-xs Alexander Korus
+                  span.hidden-xs #{user.vorname} #{user.name}
                 ul.dropdown-menu
                   // The user image in the menu
                   li.user-header
                     img.img-circle(src='/images/user2-160x160.jpg', alt='User Image')
                     p
-                      | Alexander Pierce - Mitarbeiter
+                      | #{user.vorname} #{user.name} - 
+                      if user.rolle == "mitarbeiter"
+                          | Mitarbeiter
+                      else
+                          | Kunde
                       // small Member since Nov. 2012
                   // Menu Footer
                   li.user-footer
@@ -154,26 +161,36 @@ html
             .pull-left.image
               img.img-circle(src='/images/user2-160x160.jpg', alt='User Image')
             .pull-left.info
-              p Alexander Korus
+              p #{user.vorname} #{user.name}
               // Rolle
               a(href='#')
-                |  Mitarbeiter
+                if user.rolle == "mitarbeiter"
+                  | Mitarbeiter
+                else
+                  | Kunde
           // Sidebar Menu
           ul.sidebar-menu
             li.header Navigation
             // Optionally, you can add icons to the links
-            li.active
-              a(href='/admin')
-                i.fa.fa-link
-                span Übersicht
-            li.treeview
-              a(href='#')
-                i.fa.fa-link
-                span Vorfälle
-                i.fa.fa-angle-left.pull-right
-              ul.treeview-menu
-                li
-                  a(href='/erfassen') Schaden erfassen
+            if user.rolle == "kunde"
+              li
+                a(href='/kunde/')
+                  i.fa.fa-link
+                  span Übersicht
+              li.treeview
+                a(href='#')
+                  i.fa.fa-link
+                  span Vorfälle
+                  i.fa.fa-angle-left.pull-right
+                ul.treeview-menu
+                  li
+                    a(href='/kunde/erfassen') Schaden erfassen
+            else
+              li
+                a(href='/kunde/')
+                  i.fa.fa-link
+                  span Control Center
+
           // /.sidebar-menu
         // /.sidebar
       // Content Wrapper. Contains page content

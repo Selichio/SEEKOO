@@ -7,8 +7,10 @@ block headerdesc
 	p Übersicht der Vorfälle
 
 block content
-	- var schaden = { "Marke"  : "Audi",  "Model"  : "A3", "Status" : "Opened" }
-	
+
+	- var hallo = test
+	p= hallo
+
 	table#uebersicht.table.table-striped.table-bordered(cellspacing='0', width='100%')
 		thead
 			tr
@@ -17,15 +19,23 @@ block content
 				th Unfallort
 				th Verursacher
 				th Status
+				th Aktion
 		tbody
+			each value, index in schadenArray
+				tr
+					td #{value.marke} #{value.model}
+					td #{value.datum} #{value.uhrzeit}
+					td #{value.unfallort}
+					td #{value.verursacher}
+					td 
+						case value.status
+							when "opened"
+								i.fa.fa-circle.text-success   opened
+							when "inprogress"
+								i.fa.fa.circle.text-warning   work in progress
+							when "closed"
+								i.fa.fa.circle.text-error   closed
+					th 
+						a(href="/kunde/schaden/#{value._ID}") Vorfall öffnen
 
-			tr
-				td #{schaden.Marke} #{schaden.Model}
-				td 09.11.2015 16:04
-				td Stuttgart
-				td Fremdverschulden
-				td 
-					if schaden.Status == "Opened"
-						i.fa.fa-circle.text-success  #{schaden.Status}
-					else 
-						i.fa.fa-circle.text-warning  #{schaden.Status}
+					

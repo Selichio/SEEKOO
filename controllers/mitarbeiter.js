@@ -2,6 +2,8 @@ var express = require('express')
   , router = express.Router()
   , Mitarbeiter = require('../models/mitarbeiter')
   , Auth = require('../middlewares/auth')
+  , Local = require('../middlewares/localuser')
+
 
 
 
@@ -30,7 +32,7 @@ router.post('/login', function(req, res) {
 
 
 // RENDER INTERN
-router.get('/intern', Auth, function(req, res){
+router.get('/intern', Auth, Local, function(req, res){
 
 	Mitarbeiter.getAlleSchaeden(function(err, schaeden){
 		console.log("Anzahl Schäden: " + schaeden.length)
@@ -48,7 +50,7 @@ router.get('/intern', Auth, function(req, res){
 
 
 // RENDER SCHADENDETAIL
-router.get('/schaden/:schadenid', function(req,res){
+router.get('/schaden/:schadenid',Auth, Local, function(req,res){
 	Mitarbeiter.getSchadenById(req.params.schadenid, function(err, schaden){
 		if(schaden)
 		{
