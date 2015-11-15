@@ -54,7 +54,8 @@ router.get('/schaden/:schadenid',Auth, Local, function(req,res){
 	Mitarbeiter.getSchadenById(req.params.schadenid, function(err, schaden){
 		if(schaden)
 		{
-			res.send(schaden)
+			res.render("vorfall", {schaden : schaden})
+			//res.send(schaden)
 		}
 		else
 		{
