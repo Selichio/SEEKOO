@@ -1,0 +1,67 @@
+extends ./layout.jade
+
+block header
+  | Schaden bearbeiten
+
+block headerdesc
+  p Schaden bearbeiten
+
+block content
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 
+        a(data-toggle='collapse', href='#collapse1') Schadendetails 
+          span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+    #collapse1.panel-collapse.collapse
+      table.table
+        tr
+          td(class="col-sm-2") Marke + Model
+          td #{schaden.marke} #{schaden.model}
+        tr
+          td Zeit
+          td #{schaden.datum} #{schaden.uhrzeit}
+        tr
+          td Verursacher
+          td #{schaden.verursacher}
+        tr
+          td Unfallort
+          td #{schaden.unfallort}
+        tr
+          td Halter
+          td #{schaden.halter}
+        tr
+          td Unfallhergang
+          td #{schaden.unfallhergang}
+        tr
+          td Sonstiges
+          td #{schaden.sonstiges}
+        tr
+          td Melder
+          td #{schaden.Melder.kennung}
+        tr
+          td Status
+          td
+            case schaden.status
+                when "opened"
+                  span.label.label-success opened
+                when "inprogress"
+                  span.label.label-warning   work in progress
+                when "closed"
+                  span.label.label-error   closed
+        tr
+          td Uploads
+          td
+            .row
+              each image, index in schaden.bilder
+                - var pos = image.mimetype.indexOf("/")
+                - var type = image.mimetype.slice(pos+1)
+                .col-xs-6.col-md-3
+                  a.thumbnail(href='#')
+                    img(src="/uploads/#{image.filename}.#{type}")
+
+          
+
+
+
+
+

@@ -1,15 +1,37 @@
 extends ./layout.jade
 
 block header
-  | Übersicht
+	| Übersicht
 
 block headerdesc
-  p Übersicht der Vorfälle
+	p Übersicht der Vorfälle
 
 block content
-  p Hier entsteht eine neue Seite
-  b test
-  p=schadenArray
-  ul
-    each val, index in schadenArray
-      li= index + ': ' + val._id
+	table#uebersicht.table.table-striped.table-bordered(cellspacing='0', width='100%')
+		thead
+			tr
+				th Melder
+				th Marke + Modell
+				th Datum / Uhrzeit
+				th Unfallort
+				th Verursacher
+				th Status
+				th Aktion
+		tbody
+			each value, index in schadenArray
+				tr
+					td #{value.Melder.kennung}
+					td #{value.marke} #{value.model}
+					td #{value.datum} #{value.uhrzeit}
+					td #{value.unfallort}
+					td #{value.verursacher}
+					td 
+						case value.status
+							when "opened"
+								span.label.label-success opened
+							when "inprogress"
+								span.label.label-warning   work in progress
+							when "closed"
+								span.label.label-error   closed
+					th 
+						a(href="/mitarbeiter/schaden/#{value._id}") Vorfall öffnen
