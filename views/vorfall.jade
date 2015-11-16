@@ -59,9 +59,40 @@ block content
                   a.thumbnail(href='#')
                     img(src="/uploads/#{image.filename}.#{type}")
 
-          
+  form.form-horizontal(role='form', name='bearbeiten' method='post', action='/mitarbeiter/bearbeiten', enctype='multipart/form-data')
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+          a(data-toggle='collapse', href='#collapse2') Fahrzeugbewertung 
+            span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+      #collapse2.panel-collapse.collapse
+        .panel-body
+          table.table
+            tr
+              td(class="col-sm-2") Bewertung des Fahrzeugs (Freitext)
+              td 
+                textarea#fahrzeugbewertung.form-control(name='fahrzeugbewertung')
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+          a(data-toggle='collapse', href='#collapse3') Rechnung / Kostenvoranschlag 
+            span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+      #collapse3.panel-collapse.collapse
+        .panel-body
+          table.table
+            tr
+              td(class="col-sm-2") Kostenvoranschlag
+              td 
+                input#kostenvoranschlag.form-control.input-md(name='kostenvoranschlag', type='text', required='')
+            tr
+              td Rechnung
+              td
+                input#rechnung.input-file(name='rechnung', type='file', multiple)
 
 
+   button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
+  
 
 
 
