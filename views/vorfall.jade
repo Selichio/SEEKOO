@@ -57,7 +57,7 @@ block content
                 - var type = image.mimetype.slice(pos+1)
                 .col-xs-6.col-md-3
                   a.thumbnail(href='#')
-                    img(src="/uploads/#{image.filename}.#{type}")
+                    img(src="/uploads/#{image.filename}")
 
   form.form-horizontal(role='form', name='bearbeiten' method='post', action='/mitarbeiter/bearbeiten', enctype='multipart/form-data')
     .panel.panel-default
