@@ -64,15 +64,16 @@ router.get('/schaden/:schadenid',Auth, function(req,res){
 })
 
 // EDIT SCHADEN
-router.post('/schaden/bearbeiten', Auth, function(err, schaden){
+router.post('/bearbeiten', Auth, function(req,res){
+	console.log(req.files)
 	console.log("Mitarbeiter.bearbeiten")
 	var schaden = {
-		"schadenid"         : req.body.schadenid,
+		"schadenid"         : req.body.id,
 		"fahrzeugbewertung" : req.body.fahrzeugbewertung,
 		"kostenvoranschlag" : req.body.kostenvoranschlag,
 		"rechnung" : req.files
 	}
-	Mitarbeiter.editSchaden(schaden, function(){
+	Mitarbeiter.editSchaden(schaden, function(err, schaden){
 		if(err)
 		{
 			res.render("Fehler beim erfassen")
@@ -80,7 +81,7 @@ router.post('/schaden/bearbeiten', Auth, function(err, schaden){
 		else
 		{
 			console.log(schaden)
-			res.redirect('/intern')
+			res.redirect('/mitarbeiter/intern')
 		}
 	})
 })

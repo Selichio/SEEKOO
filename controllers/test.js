@@ -58,7 +58,23 @@ db.Collection.update({"suchkey" : "suchvalue"}, {$set : {"modkey" : "modval"}})
 
 
 
+
+
 */
+
+
+router.get('/updatebyid/:obid', function(req,res){
+	var coll = db.get("Schaden")
+	coll.updateById(req.params.obid, {$set : {"marke" : "HONDA"}}, function(){
+		res.send("Hallo")
+	})
+})
+router.get('/findbyid/:obid', function(req,res){
+	var coll = db.get("Schaden")
+	coll.findById(req.params.obid, {}, function(err, docs){
+		res.send(docs)
+	})
+})
 
 
 router.get('/schaden', function(req,res){
