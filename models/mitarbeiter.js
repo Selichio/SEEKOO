@@ -42,22 +42,25 @@ exports.getSchadenById = function(schadenid, cb){
 	var err = null
 	var returnschaden = null
 	var collSchaden = db.get("Schaden")
-	collSchaden.find({}, function(err, schaden){
-		for (var i = schaden.length - 1; i >= 0; i--) {
-			if(schaden[i]._id == schadenid)
-			{
-				returnschaden = schaden[i]
-			}
-		};
-		cb(err,returnschaden)
+	collSchaden.findById(schadenid,{}, function(err, schaden){
+		cb(err,schaden)
 	})
 };
+
 
 exports.editSchaden = function(schaden, cb){
 	console.log("Model Mitarbeiter: editSchaden")
 	var err = null
 	var collSchaden = db.get("Schaden")
-	//collSchaden.update({})
+	collSchaden.updateById(schaden.schadenid,{$set : {
+		"fahrzeugbewertung" : schaden.fahrzeugbewertung,
+		"kostenvoranschlag" : schaden.kostenvoranschlag,
+		"rechnung" : schaden.rechnung
+		}
+	}, 
+	function(err, docs){
+		cb(err, docs)
+	})
 };
 
 
