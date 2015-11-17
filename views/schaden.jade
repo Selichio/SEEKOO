@@ -43,11 +43,11 @@ block content
           td
             case schaden.status
                 when "opened"
-                  span.label.label-success opened
-                when "inprogress"
-                  span.label.label-warning   work in progress
-                when "closed"
-                  span.label.label-error   closed
+                  span.label.label-info opened
+                when "work in progress"
+                  span.label.label-warning  work in progress
+                when "success"
+                  span.label.label-success  success
         tr
           td Uploads
           td
@@ -94,7 +94,7 @@ block content
               if !schaden.rechnung
                 p Es wurde noch keine Rechnung hochgeladen
               else
-                a(href="/uploads/#{schaden.rechnung.filename") Rechnung herunterladen
+                a(href="/uploads/#{schaden.rechnung.filename}") Rechnung herunterladen
 
   #image-gallery2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     .modal-dialog

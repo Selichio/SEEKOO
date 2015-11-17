@@ -43,11 +43,11 @@ block content
           td
             case schaden.status
                 when "opened"
-                  span.label.label-success opened
-                when "inprogress"
-                  span.label.label-warning   work in progress
-                when "closed"
-                  span.label.label-error   closed
+                  span.label.label-info opened
+                when "work in progress"
+                  span.label.label-warning  work in progress
+                when "success"
+                  span.label.label-success  success
         tr
           td Uploads
           td
@@ -87,11 +87,12 @@ block content
             tr
               td Rechnung
               td
-<<<<<<< HEAD
-                input#rechnung.input-file(name='rechnung', type='file', value="#{schaden.rechnung}")
-=======
-                input#rechnung.input-file(name='rechnung', type='file', multiple)
->>>>>>> af92557954f803ec9412690816d2832cb06dad5f
+                if !schaden.rechnung
+                  input#rechnung.input-file(name='rechnung', type='file', multiple)
+                else
+                  input#rechnung.input-file(name='rechnung', type='file', multiple)
+                  each doc, index in schaden.rechnung
+                    p Datei: #{doc.originalname}
 
 
     button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
