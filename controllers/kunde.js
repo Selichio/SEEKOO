@@ -2,7 +2,6 @@ var express = require('express')
   , router = express.Router()
   , Kunde = require('../models/kunde')
   , Auth = require('../middlewares/auth')
-  , Local = require('../middlewares/localuser')
 
   
 
@@ -28,7 +27,7 @@ router.post('/login', function(req, res) {
 
 
 // RENDER INTERN
-router.get('/intern', Auth, Local, function(req, res){
+router.get('/intern', Auth, function(req, res){
 
 	// Ermittelt, ob der Kunde bereits einen Schaden gemeldet hat
 	Kunde.getSchaden(req.session.user.kennung, function(err, schaden){
@@ -45,11 +44,11 @@ router.get('/intern', Auth, Local, function(req, res){
 })
 
 // RENDER ERFASSUNG
-router.get('/erfassen', Auth, Local, function(req, res){
+router.get('/erfassen', Auth, function(req, res){
 	res.render('erfassen')
 })
 
-router.post('/erfassen', function(req, res){
+router.post('/erfassen',Auth, function(req, res){
 	//Erfassung des Schadens
 	console.log("Kunde.erfassen")
 	

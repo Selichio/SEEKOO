@@ -53,3 +53,17 @@ exports.getSchadenById = function(schadenid, cb){
 	})
 };
 
+exports.editSchaden = function(schaden, cb){
+	console.log("Model Mitarbeiter: editSchaden")
+	var err = null
+	var collSchaden = db.get("Schaden")
+	//collSchaden.update({})
+};
+
+
+
+
+
+
+
+

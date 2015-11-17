@@ -2,7 +2,6 @@ var express = require('express')
   , router = express.Router()
   , Mitarbeiter = require('../models/mitarbeiter')
   , Auth = require('../middlewares/auth')
-  , Local = require('../middlewares/localuser')
 
 
 
@@ -32,7 +31,7 @@ router.post('/login', function(req, res) {
 
 
 // RENDER INTERN
-router.get('/intern', Auth, Local, function(req, res){
+router.get('/intern', Auth, function(req, res){
 
 	Mitarbeiter.getAlleSchaeden(function(err, schaeden){
 		console.log("Anzahl Schäden: " + schaeden.length)
@@ -50,7 +49,7 @@ router.get('/intern', Auth, Local, function(req, res){
 
 
 // RENDER SCHADENDETAIL
-router.get('/schaden/:schadenid',Auth, Local, function(req,res){
+router.get('/schaden/:schadenid',Auth, function(req,res){
 	Mitarbeiter.getSchadenById(req.params.schadenid, function(err, schaden){
 		if(schaden)
 		{
@@ -64,6 +63,27 @@ router.get('/schaden/:schadenid',Auth, Local, function(req,res){
 	})
 })
 
+// EDIT SCHADEN
+router.post('/schaden/bearbeiten', Auth, function(err, schaden){
+	console.log("Mitarbeiter.bearbeiten")
+	var schaden = {
+		"schadenid"         : req.body.schadenid,
+		"fahrzeugbewertung" : req.body.fahrzeugbewertung,
+		"kostenvoranschlag" : req.body.kostenvoranschlag,
+		"rechnung" : req.files
+	}
+	Mitarbeiter.editSchaden(schaden, function(){
+		if(err)
+		{
+			res.render("Fehler beim erfassen")
+		}
+		else
+		{
+			console.log(schaden)
+			res.redirect('/intern')
+		}
+	})
+})
 
 
 
