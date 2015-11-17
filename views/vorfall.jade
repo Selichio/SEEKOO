@@ -69,7 +69,7 @@ block content
             tr
               td(class="col-sm-2") Bewertung des Fahrzeugs (Freitext)
               td 
-                textarea#fahrzeugbewertung.form-control(name='fahrzeugbewertung')
+                textarea#fahrzeugbewertung.form-control(name='fahrzeugbewertung',value="#{schaden.fahrzeugbewertung}")
 
     .panel.panel-default
       .panel-heading
@@ -82,12 +82,12 @@ block content
             tr
               td(class="col-sm-2") Kostenvoranschlag
               td 
-                input#kostenvoranschlag.form-control.input-md(name='kostenvoranschlag', type='text', required='')
+                input#kostenvoranschlag.form-control.input-md(name='kostenvoranschlag', type='text', required='', value="#{schaden.kostenvoranschlag}")
                 input(type='hidden', name='id', value="#{schaden._id}")
             tr
               td Rechnung
               td
-                input#rechnung.input-file(name='rechnung', type='file')
+                input#rechnung.input-file(name='rechnung', type='file', value="#{schaden.rechnung}")
 
 
     button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
