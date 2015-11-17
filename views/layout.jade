@@ -147,7 +147,7 @@ html
                     .pull-left
                       a.btn.btn-default.btn-flat(href='#') Profil
                     .pull-right
-                      a.btn.btn-default.btn-flat(href='#') Ausloggen
+                      a.btn.btn-default.btn-flat(href='/logout') Ausloggen
               // Control Sidebar Toggle Button
               li
                 a(href='#', data-toggle='control-sidebar')
@@ -174,7 +174,7 @@ html
             // Optionally, you can add icons to the links
             if user.rolle == "kunde"
               li
-                a(href='/kunde/uebersicht')
+                a(href='/kunde/intern')
                   i.fa.fa-link
                   span Übersicht
               li.treeview
@@ -228,18 +228,11 @@ html
       // Control Sidebar
       aside.control-sidebar.control-sidebar-dark
         // Create the tabs
-        ul.nav.nav-tabs.nav-justified.control-sidebar-tabs
-          li.active
-            a(href='#control-sidebar-home-tab', data-toggle='tab')
-              i.fa.fa-home
-          li
-            a(href='#control-sidebar-settings-tab', data-toggle='tab')
-              i.fa.fa-gears
         // Tab panes
         .tab-content
           // Home tab content
           #control-sidebar-home-tab.tab-pane.active
-            h3.control-sidebar-heading Recent Activity
+            h3.control-sidebar-heading Letzte Vorfälle
             ul.control-sidebar-menu
               li
                 a(href='javascript::;')
@@ -247,31 +240,6 @@ html
                   .menu-info
                     h4.control-sidebar-subheading Langdon's Birthday
                     p Will be 23 on April 24th
-            // /.control-sidebar-menu
-            h3.control-sidebar-heading Tasks Progress
-            ul.control-sidebar-menu
-              li
-                a(href='javascript::;')
-                  h4.control-sidebar-subheading
-                    | Custom Template Design
-                    span.label.label-danger.pull-right 70%
-                  .progress.progress-xxs
-                    .progress-bar.progress-bar-danger(style='width: 70%')
-            // /.control-sidebar-menu
-          // /.tab-pane
-          // Stats tab content
-          #control-sidebar-stats-tab.tab-pane Stats Tab Content
-          // /.tab-pane
-          // Settings tab content
-          #control-sidebar-settings-tab.tab-pane
-            form(method='post')
-              h3.control-sidebar-heading General Settings
-              .form-group
-                label.control-sidebar-subheading
-                  | Report panel usage
-                  input.pull-right(type='checkbox', checked='')
-                p
-                  | Some information about this general settings option
               // /.form-group
           // /.tab-pane
       // /.control-sidebar
@@ -297,4 +265,5 @@ html
         $('#uebersicht').DataTable();
       } 
       );
+    script(src='/js/gallery.js')
 

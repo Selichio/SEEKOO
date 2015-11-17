@@ -83,4 +83,20 @@ router.post('/erfassen', function(req, res){
 	})
 })
 
+
+// RENDER SCHADENDETAIL
+router.get('/schaden/:schadenid',Auth, Local, function(req,res){
+	Kunde.getSchadenById(req.params.schadenid, function(err, schaden){
+		if(schaden)
+		{
+			res.render("schaden", {schaden : schaden})
+			//res.send(schaden)
+		}
+		else
+		{
+			res.send("Zu dieser ID wurde kein Schaden gefunden")
+		}
+	})
+})
+
 module.exports = router

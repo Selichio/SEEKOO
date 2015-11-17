@@ -46,3 +46,19 @@ exports.addSchaden = function(schaden, cb) {
 		cb(err)
 	})	
 };
+
+exports.getSchadenById = function(schadenid, cb){
+	console.log("Model Kunde: getSchadenById")
+	var err = null
+	var returnschaden = null
+	var collSchaden = db.get("Schaden")
+	collSchaden.find({}, function(err, schaden){
+		for (var i = schaden.length - 1; i >= 0; i--) {
+			if(schaden[i]._id == schadenid)
+			{
+				returnschaden = schaden[i]
+			}
+		};
+		cb(err,returnschaden)
+	})
+};
