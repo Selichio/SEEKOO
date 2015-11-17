@@ -53,8 +53,12 @@ router.get('/schaden/:schadenid',Auth, function(req,res){
 	Mitarbeiter.getSchadenById(req.params.schadenid, function(err, schaden){
 		if(schaden)
 		{
-			res.render("vorfall", {schaden : schaden})
-			//res.send(schaden)
+			Mitarbeiter.updateStatus(req.params.schadenid, function(err){
+				console.log(err)
+				schaden.status = "work in progress"
+				res.render("vorfall", {schaden : schaden})
+
+			})
 		}
 		else
 		{
@@ -71,6 +75,7 @@ router.post('/bearbeiten', Auth, function(req,res){
 		"schadenid"         : req.body.id,
 		"fahrzeugbewertung" : req.body.fahrzeugbewertung,
 		"kostenvoranschlag" : req.body.kostenvoranschlag,
+		"status"            : "closed",
 		"rechnung" : req.files
 	}
 	Mitarbeiter.editSchaden(schaden, function(err, schaden){

@@ -48,6 +48,17 @@ exports.getSchadenById = function(schadenid, cb){
 };
 
 
+exports.updateStatus = function(id, cb){
+	console.log("Model Mitarbeiter: updateStatus")
+	var err = null
+	var collSchaden = db.get("Schaden")
+	collSchaden.updateById(id, {$set : {
+		"status" : "work in progress"
+	}}, function(err){
+		cb(err)
+	})
+}
+
 exports.editSchaden = function(schaden, cb){
 	console.log("Model Mitarbeiter: editSchaden")
 	var err = null
@@ -55,6 +66,7 @@ exports.editSchaden = function(schaden, cb){
 	collSchaden.updateById(schaden.schadenid,{$set : {
 		"fahrzeugbewertung" : schaden.fahrzeugbewertung,
 		"kostenvoranschlag" : schaden.kostenvoranschlag,
+		"status" : schaden.status,
 		"rechnung" : schaden.rechnung
 		}
 	}, 
