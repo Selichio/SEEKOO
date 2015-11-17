@@ -34,6 +34,7 @@ router.get('/intern', Auth, function(req, res){
 		console.log("Schaden-Lenght: " +schaden.length)
 		if(schaden.length > 0)
 		{
+		
 			res.render("uebersicht", {schadenArray : schaden})
 		}
 		else
@@ -84,7 +85,7 @@ router.post('/erfassen',Auth, function(req, res){
 
 
 // RENDER SCHADENDETAIL
-router.get('/schaden/:schadenid',Auth, Local, function(req,res){
+router.get('/schaden/:schadenid',Auth, function(req,res){
 	Kunde.getSchadenById(req.params.schadenid, function(err, schaden){
 		if(schaden)
 		{
