@@ -1,0 +1,74 @@
+extends ./layout.jade
+
+block header
+  | Schadendetails
+
+block headerdesc
+  p #{schaden.marke} #{schaden.model}
+
+block content
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Schadendetails 
+    
+    table.table
+      tr
+        td(class="col-sm-2") Marke + Model
+        td #{schaden.marke} #{schaden.model}
+      tr
+        td Zeit
+        td #{schaden.datum} #{schaden.uhrzeit}
+      tr
+        td Verursacher
+        td #{schaden.verursacher}
+      tr
+        td Unfallort
+        td #{schaden.unfallort}
+      tr
+        td Halter
+        td #{schaden.halter}
+      tr
+        td Unfallhergang
+        td #{schaden.unfallhergang}
+      tr
+        td Sonstiges
+        td #{schaden.sonstiges}
+      tr
+        td Melder
+        td #{schaden.Melder.kennung}
+      tr
+        td Status
+        td
+          case schaden.status
+              when "opened"
+                span.label.label-success opened
+              when "inprogress"
+                span.label.label-warning   work in progress
+              when "closed"
+                span.label.label-error   closed
+      tr
+        td Uploads
+        td
+          .row
+            each image, index in schaden.bilder
+              .col-xs-6.col-md-3
+                a.thumbnail(href='#', data-image-id='', data-toggle='modal', data-title="#{image.originalname}", data-caption='', data-image='/uploads/#{image.filename}', data-target='#image-gallery2')
+                  img.img-responsive(src="/uploads/#{image.filename}", alt='Short alt text')
+
+  #image-gallery2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal')
+            span(aria-hidden='true') ×
+            span.sr-only Close
+          h4#image-gallery-title.modal-title
+        .modal-body
+          img#image-gallery-image.img-responsive(src='')
+        .modal-footer
+          .col-md-2
+            button#show-previous-image.btn.btn-primary(type='button') Zurück
+          #image-gallery-caption.col-md-8.text-justify
+            | This text will be overwritten by jQuery
+          .col-md-2
+            button#show-next-image.btn.btn-default(type='button') Weiter

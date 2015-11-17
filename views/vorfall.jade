@@ -53,11 +53,9 @@ block content
           td
             .row
               each image, index in schaden.bilder
-                - var pos = image.mimetype.indexOf("/")
-                - var type = image.mimetype.slice(pos+1)
                 .col-xs-6.col-md-3
-                  a.thumbnail(href='#')
-                    img(src="/uploads/#{image.filename}")
+                  a.thumbnail(href='#', data-image-id='', data-toggle='modal', data-title="#{image.originalname}", data-caption='', data-image='/uploads/#{image.filename}', data-target='#image-gallery')
+                    img.img-responsive(src="/uploads/#{image.filename}", alt='Short alt text')
 
   form.form-horizontal(role='form', name='bearbeiten' method='post', action='/mitarbeiter/bearbeiten', enctype='multipart/form-data')
     .panel.panel-default
@@ -85,14 +83,33 @@ block content
               td(class="col-sm-2") Kostenvoranschlag
               td 
                 input#kostenvoranschlag.form-control.input-md(name='kostenvoranschlag', type='text', required='')
+                input(type='hidden', name='id', value="#{schaden._id}")
             tr
               td Rechnung
               td
-                input#rechnung.input-file(name='rechnung', type='file', multiple)
+                input#rechnung.input-file(name='rechnung', type='file')
 
 
-   button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
+    button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
   
+#image-gallery.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal')
+          span(aria-hidden='true') ×
+          span.sr-only Close
+        h4#image-gallery-title.modal-title
+      .modal-body
+        img#image-gallery-image.img-responsive(src='')
+      .modal-footer
+        .col-md-2
+          button#show-previous-image.btn.btn-primary(type='button') Zurück
+        #image-gallery-caption.col-md-8.text-justify
+          | This text will be overwritten by jQuery
+        .col-md-2
+          button#show-next-image.btn.btn-default(type='button') Weiter
+
 
 
 
