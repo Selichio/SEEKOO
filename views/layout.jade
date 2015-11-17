@@ -128,13 +128,13 @@ html
                 // Menu Toggle Button
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
                   // The user image in the navbar
-                  img.user-image(src='/images/user2-160x160.jpg', alt='User Image')
+                  img.user-image(src='#{user.profilbild}', alt='User Image')
                   // hidden-xs hides the username on small devices so only the image appears.
                   span.hidden-xs #{user.vorname} #{user.name}
                 ul.dropdown-menu
                   // The user image in the menu
                   li.user-header
-                    img.img-circle(src='/images/user2-160x160.jpg', alt='User Image')
+                    img.img-circle(src='#{user.profilbild}', alt='User Image')
                     p
                       | #{user.vorname} #{user.name} - 
                       if user.rolle == "mitarbeiter"
@@ -148,10 +148,6 @@ html
                       a.btn.btn-default.btn-flat(href='#') Profil
                     .pull-right
                       a.btn.btn-default.btn-flat(href='/logout') Ausloggen
-              // Control Sidebar Toggle Button
-              li
-                a(href='#', data-toggle='control-sidebar')
-                  i.fa.fa-gears
       // Left side column. contains the logo and sidebar
       aside.main-sidebar
         // sidebar: style can be found in sidebar.less
@@ -159,7 +155,7 @@ html
           // Sidebar user panel (optional)
           .user-panel
             .pull-left.image
-              img.img-circle(src='/images/user2-160x160.jpg', alt='User Image')
+              img.img-circle(src='#{user.profilbild}', alt='User Image')
             .pull-left.info
               p #{user.vorname} #{user.name}
               // Rolle
@@ -225,28 +221,6 @@ html
           a(href='#') SEKO
           | .
         |  All rights reserved.
-      // Control Sidebar
-      aside.control-sidebar.control-sidebar-dark
-        // Create the tabs
-        // Tab panes
-        .tab-content
-          // Home tab content
-          #control-sidebar-home-tab.tab-pane.active
-            h3.control-sidebar-heading Letzte Vorfälle
-            ul.control-sidebar-menu
-              li
-                a(href='javascript::;')
-                  i.menu-icon.fa.fa-birthday-cake.bg-red
-                  .menu-info
-                    h4.control-sidebar-subheading Langdon's Birthday
-                    p Will be 23 on April 24th
-              // /.form-group
-          // /.tab-pane
-      // /.control-sidebar
-      //
-        Add the sidebar's background. This div must be placed
-        immediately after the control sidebar
-      .control-sidebar-bg
     // ./wrapper
     // REQUIRED JS SCRIPTS
     // jQuery 2.1.4

@@ -9,51 +9,92 @@ block headerdesc
 block content
   .panel.panel-default
     .panel-heading
-      h3.panel-title Schadendetails 
-    
-    table.table
-      tr
-        td(class="col-sm-2") Marke + Model
-        td #{schaden.marke} #{schaden.model}
-      tr
-        td Zeit
-        td #{schaden.datum} #{schaden.uhrzeit}
-      tr
-        td Verursacher
-        td #{schaden.verursacher}
-      tr
-        td Unfallort
-        td #{schaden.unfallort}
-      tr
-        td Halter
-        td #{schaden.halter}
-      tr
-        td Unfallhergang
-        td #{schaden.unfallhergang}
-      tr
-        td Sonstiges
-        td #{schaden.sonstiges}
-      tr
-        td Melder
-        td #{schaden.Melder.kennung}
-      tr
-        td Status
-        td
-          case schaden.status
-              when "opened"
-                span.label.label-success opened
-              when "inprogress"
-                span.label.label-warning   work in progress
-              when "closed"
-                span.label.label-error   closed
-      tr
-        td Uploads
-        td
-          .row
-            each image, index in schaden.bilder
-              .col-xs-6.col-md-3
-                a.thumbnail(href='#', data-image-id='', data-toggle='modal', data-title="#{image.originalname}", data-caption='', data-image='/uploads/#{image.filename}', data-target='#image-gallery2')
-                  img.img-responsive(src="/uploads/#{image.filename}", alt='Short alt text')
+      h3.panel-title  
+        a(data-toggle='collapse', href='#collapse1') Schadendetails 
+          span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+    #collapse1.panel-collapse.collapse
+      table.table
+        tr
+          td(class="col-sm-2") Marke + Model
+          td #{schaden.marke} #{schaden.model}
+        tr
+          td Zeit
+          td #{schaden.datum} #{schaden.uhrzeit}
+        tr
+          td Verursacher
+          td #{schaden.verursacher}
+        tr
+          td Unfallort
+          td #{schaden.unfallort}
+        tr
+          td Halter
+          td #{schaden.halter}
+        tr
+          td Unfallhergang
+          td #{schaden.unfallhergang}
+        tr
+          td Sonstiges
+          td #{schaden.sonstiges}
+        tr
+          td Melder
+          td #{schaden.Melder.kennung}
+        tr
+          td Status
+          td
+            case schaden.status
+                when "opened"
+                  span.label.label-success opened
+                when "inprogress"
+                  span.label.label-warning   work in progress
+                when "closed"
+                  span.label.label-error   closed
+        tr
+          td Uploads
+          td
+            .row
+              each image, index in schaden.bilder
+                .col-xs-6.col-md-3
+                  a.thumbnail(href='#', data-image-id='', data-toggle='modal', data-title="#{image.originalname}", data-caption='', data-image='/uploads/#{image.filename}', data-target='#image-gallery2')
+                    img.img-responsive(src="/uploads/#{image.filename}", alt='Short alt text')
+
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 
+        a(data-toggle='collapse', href='#collapse2') Fahrzeugbewertung 
+          span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+    #collapse2.panel-collapse.collapse
+      .panel-body
+        table.table
+          tr
+            td(class="col-sm-2") Bewertung des Fahrzeugs
+            td 
+              if !schaden.fahrzeugbewertung
+                p Es wurde noch keine Fahrzeugbewertung durchgeführt
+              else
+                p #{schaden.fahrzeugbewertung}
+
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 
+        a(data-toggle='collapse', href='#collapse3') Rechnung / Kostenvoranschlag 
+          span.glyphicon.glyphicon-menu-down(aria-hidden='true')
+    #collapse3.panel-collapse.collapse
+      .panel-body
+        table.table
+          tr
+            td(class="col-sm-2") Kostenvoranschlag
+            td 
+              if !schaden.kostenvoranschlag
+                p Es wurde noch kein Kostenvoranschlag gemacht
+              else
+                p #{schaden.kostenvoranschlag}
+          tr
+            td Rechnung
+            td
+              if !schaden.rechnung
+                p Es wurde noch keine Rechnung hochgeladen
+              else
+                a(href="/uploads/#{schaden.rechnung.filename") Rechnung herunterladen
 
   #image-gallery2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     .modal-dialog
