@@ -34,7 +34,7 @@ router.post('/login', function(req, res) {
 router.get('/intern', Auth, function(req, res){
 
 	Mitarbeiter.getAlleSchaeden(function(err, schaeden){
-		console.log("Anzahl Schäden: " + schaeden.length)
+		//console.log("Anzahl Schäden: " + schaeden.length)
 		if(schaeden.length > 0)
 		{
 			res.render("controlcenter", {schadenArray : schaeden})
@@ -75,7 +75,7 @@ router.post('/bearbeiten', Auth, function(req,res){
 		"schadenid"         : req.body.id,
 		"fahrzeugbewertung" : req.body.fahrzeugbewertung,
 		"kostenvoranschlag" : req.body.kostenvoranschlag,
-		"status"            : "closed",
+		"status"            : "success",
 		"rechnung" : req.files
 	}
 	Mitarbeiter.editSchaden(schaden, function(err, schaden){

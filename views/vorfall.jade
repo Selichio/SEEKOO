@@ -97,23 +97,23 @@ block content
 
     button#bearbeiten.btn.btn-primary(name='informieren') Kunden informieren
   
-#image-gallery.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close(type='button', data-dismiss='modal')
-          span(aria-hidden='true') ×
-          span.sr-only Close
-        h4#image-gallery-title.modal-title
-      .modal-body
-        img#image-gallery-image.img-responsive(src='')
-      .modal-footer
-        .col-md-2
-          button#show-previous-image.btn.btn-primary(type='button') Zurück
-        #image-gallery-caption.col-md-8.text-justify
-          | This text will be overwritten by jQuery
-        .col-md-2
-          button#show-next-image.btn.btn-default(type='button') Weiter
+  #image-gallery.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal')
+            span(aria-hidden='true') ×
+            span.sr-only Close
+          h4#image-gallery-title.modal-title
+        .modal-body
+          img#image-gallery-image.img-responsive(src='')
+        .modal-footer
+          .col-md-2
+            button#show-previous-image.btn.btn-primary(type='button') Zurück
+          #image-gallery-caption.col-md-8.text-justify
+            | This text will be overwritten by jQuery
+          .col-md-2
+            button#show-next-image.btn.btn-default(type='button') Weiter
 
 
 

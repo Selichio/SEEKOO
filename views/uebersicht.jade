@@ -30,11 +30,11 @@ block content
 					td 
 						case value.status
 							when "opened"
-								i.fa.fa-circle.text-success   opened
-							when "inprogress"
-								i.fa.fa.circle.text-warning   work in progress
-							when "closed"
-								i.fa.fa.circle.text-error   closed
+								span.label.label-info opened
+							when "work in progress"
+								span.label.label-warning  work in progress
+							when "success"
+								span.label.label-success  success
 					th 
 						a(href="/kunde/schaden/#{value._id}") Vorfall öffnen
 

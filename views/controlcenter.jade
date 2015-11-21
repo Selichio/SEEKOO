@@ -7,31 +7,34 @@ block headerdesc
 	p Übersicht der Vorfälle
 
 block content
-	table#uebersicht.table.table-striped.table-bordered(cellspacing='0', width='100%')
-		thead
-			tr
-				th Melder
-				th Marke + Modell
-				th Datum / Uhrzeit
-				th Unfallort
-				th Verursacher
-				th Status
-				th Aktion
-		tbody
-			each value, index in schadenArray
+	if !schadenArray
+		p Keine Vorfälle vorhanden
+	else
+		table#uebersicht.table.table-striped.table-bordered(cellspacing='0', width='100%')
+			thead
 				tr
-					td #{value.Melder.kennung}
-					td #{value.marke} #{value.model}
-					td #{value.datum} #{value.uhrzeit}
-					td #{value.unfallort}
-					td #{value.verursacher}
-					td 
-						case value.status
-							when "opened"
-								span.label.label-info opened
-							when "work in progress"
-								span.label.label-warning work in progress
-							when "closed"
-								span.label.label-success success
-					th 
-						a(href="/mitarbeiter/schaden/#{value._id}") Vorfall öffnen
+					th Melder
+					th Marke + Modell
+					th Datum / Uhrzeit
+					th Unfallort
+					th Verursacher
+					th Status
+					th Aktion
+			tbody
+				each value, index in schadenArray
+					tr
+						td #{value.Melder.kennung}
+						td #{value.marke} #{value.model}
+						td #{value.datum} #{value.uhrzeit}
+						td #{value.unfallort}
+						td #{value.verursacher}
+						td 
+							case value.status
+								when "opened"
+									span.label.label-info opened
+								when "work in progress"
+									span.label.label-warning work in progress
+								when "success"
+									span.label.label-success success
+						th 
+							a(href="/mitarbeiter/schaden/#{value._id}") Vorfall öffnen

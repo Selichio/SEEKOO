@@ -94,7 +94,8 @@ block content
               if !schaden.rechnung
                 p Es wurde noch keine Rechnung hochgeladen
               else
-                a(href="/uploads/#{schaden.rechnung.filename}") Rechnung herunterladen
+                each file, index in schaden.rechnung
+                  a(href="/uploads/#{file.filename}") #{file.originalname} herunterladen
 
   #image-gallery2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     .modal-dialog
