@@ -17,7 +17,7 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
 	console.log("GET.Login")
 	Mitarbeiter.processLogin(req.body.benutzername, req.body.passwort,function(err, user) {
-		if(err)
+		if(user == null)
 		{
 			res.render("error", {message : err})
 		}
@@ -81,7 +81,7 @@ router.post('/bearbeiten', Auth, function(req,res){
 	Mitarbeiter.editSchaden(schaden, function(err, schaden){
 		if(err)
 		{
-			res.render("Fehler beim erfassen")
+			res.render("error", {message : err})
 		}
 		else
 		{

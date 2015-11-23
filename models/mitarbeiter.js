@@ -12,19 +12,26 @@ exports.processLogin = function(user, pass, cb) {
 	console.log("User:" + user + " PW: " + pass)
 
 	collUser.findOne({"kennung" : user}, function(err, userDB){
-		console.log("UserDB: " + userDB.password)
-		if(pwhash.verify(pass, userDB.password))
+		if(userDB == null)
 		{
-			console.log("TRUE")
-			cb(err, userDB)
-		}
-		else
-		{
-			err = "Falsches Password"
+			err = "User existiert nicht"
 			console.log(err)
 			cb(err, null)
 		}
-
+		else
+		{
+			if(pwhash.verify(pass, userDB.password))
+			{
+				console.log("TRUE")
+				cb(err, userDB)
+			}
+			else
+			{
+				err = "Falsches Passwort - Bitte prüfen"
+				console.log(err)
+				cb(err, null)
+			}
+		}
 	})
 };
 

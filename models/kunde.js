@@ -4,26 +4,34 @@ var mongo = require('mongodb')
 , pwhash = require('password-hash')
 , db = monk('localhost:27017/schadenserfassung')
   
+
 exports.processLogin = function(user, pass, cb) {
 	console.log("Model Kunde: processLogin")
 	var err = null
-	var returnuser = null
 	var collUser = db.get("User")
 	console.log("User:" + user + " PW: " + pass)
 
 	collUser.findOne({"kennung" : user}, function(err, userDB){
-		if(pwhash.verify(pass, userDB.password))
+		if(userDB == null)
 		{
-			console.log("TRUE")
-			cb(err, userDB)
-		}
-		else
-		{
-			err = "Falsches Password"
+			err = "User existiert nicht"
 			console.log(err)
 			cb(err, null)
 		}
-
+		else
+		{
+			if(pwhash.verify(pass, userDB.password))
+			{
+				console.log("TRUE")
+				cb(err, userDB)
+			}
+			else
+			{
+				err = "Falsches Passwort - Bitte prüfen"
+				console.log(err)
+				cb(err, null)
+			}
+		}
 	})
 };
 
