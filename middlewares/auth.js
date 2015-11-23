@@ -5,10 +5,11 @@ module.exports = function(req, res, next) {
   	console.log("Rolle gefunden: " + req.session.user.rolle)
     res.locals.user = req.session.user;
     next()
-  } else {
+  } else 
+  {
   	console.log("User (err): ")
     res.status(404)
-      	res.send("ERROR 404: Bitte zuerst anmelden")
+    res.render("error", {message : "Bitte melden Sie sich erneut an!"})
 
   }
 }

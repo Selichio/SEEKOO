@@ -16,4 +16,8 @@ router.get('/', function(req, res) {
   res.render('index')
 })
 
+router.get('/*', function(req, res)
+{
+	res.render("error", {message : "Diese Seite existiert nicht"})
+})
 module.exports = router
