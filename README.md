@@ -14,8 +14,10 @@
 
    Die MongoDB muss gestartet werden. 
 
-   Unter UNIX: >mongod --dbpath <PfadZumProjekt>/SEKOO/data
-   Unter Windows (cmd): C:\mongodb\bin\mongod.exe --dbpath "d:\<pfadzumprojekt>\SEKOO\data"
+   Unter UNIX: 
+   > mongod --dbpath <PfadZumProjekt>/SEKOO/data
+   Unter Windows (cmd):
+   > C:\mongodb\bin\mongod.exe --dbpath "d:\<pfadzumprojekt>\SEKOO\data"
 
 4. Starten des Webservices
 
@@ -33,9 +35,9 @@
 6. Einloggdaten:
 
    Kunde
-     Kennung:  lb85783
+   > Kennung:  lb85783
      Passwort: password123 
  
    Mitarbeiter
-     Kennung:  lb85781
+   >  Kennung:  lb85781
      Passwort: geheim
