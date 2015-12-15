@@ -16,6 +16,7 @@
 
    Unter UNIX: 
    > mongod --dbpath <PfadZumProjekt>/SEKOO/data
+
    Unter Windows (cmd):
    > C:\mongodb\bin\mongod.exe --dbpath "d:\<pfadzumprojekt>\SEKOO\data"
 
